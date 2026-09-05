@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숨트임 · 금연 도움 스낵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ripple r1"></span>
+    <span class="ripple r2"></span>
+    <span class="ripple r3"></span>
+  </div>
+
+  <main class="phone">
+
+    <!-- Progress bar (hidden on welcome & dashboard) -->
+    <div class="progress" id="progress" hidden>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">1 / 5</span>
+    </div>
+
+    <!-- SCREEN 0 : WELCOME -->
+    <section class="screen active" data-screen="welcome">
+      <div class="hero-mark">
+        <svg viewBox="0 0 120 120" class="breath-mark" aria-hidden="true">
+          <circle cx="60" cy="60" r="14" class="breath-core"/>
+          <circle cx="60" cy="60" r="30" class="breath-ring ring-a"/>
+          <circle cx="60" cy="60" r="46" class="breath-ring ring-b"/>
+        </svg>
+      </div>
+      <h1 class="display-xl">다시,<br>편하게 숨 쉴 시간</h1>
+      <p class="lede">담배 생각이 몰리는 그 순간, 손 뻗으면 닿는 곳에<br>대신할 것을 미리 준비해 둘게요.</p>
+      <button class="btn-primary" id="startBtn">내 트리거 알아보기</button>
+      <p class="hint-line">3분이면 충분해요 · 언제든 다시 설정할 수 있어요</p>
+    </section>
+
+    <!-- SCREEN 1 : PROFILE -->
+    <section class="screen" data-screen="profile">
+      <p class="step-eyebrow">기본 정보</p>
+      <h2 class="display-md">먼저, 당신에 대해<br>알려주세요</h2>
+
+      <div class="field">
+        <label for="age">나이</label>
+        <input type="number" id="age" min="14" max="100" placeholder="예: 34" inputmode="numeric">
+      </div>
+
+      <div class="field">
+        <label>성별</label>
+        <div class="chip-row" data-group="gender">
+          <button type="button" class="chip" data-value="여성">여성</button>
+          <button type="button" class="chip" data-value="남성">남성</button>
+          <button type="button" class="chip" data-value="선택 안 함">선택 안 함</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="years">흡연한 기간</label>
+        <div class="input-suffix">
+          <input type="number" id="years" min="0" max="80" placeholder="예: 8" inputmode="numeric">
+          <span>년</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="quitDays">금연을 시작한 지 며칠 됐나요?</label>
+        <div class="input-suffix">
+          <input type="number" id="quitDays" min="0" max="14" placeholder="오늘 시작했다면 0" inputmode="numeric">
+          <span>일째</span>
+        </div>
+        <p class="field-note">초기 2주가 가장 중요한 시기예요. 지금부터 함께 관리해요.</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 2 : TRIGGERS -->
+    <section class="screen" data-screen="trigger">
+      <p class="step-eyebrow">흡연 트리거</p>
+      <h2 class="display-md">언제 담배 생각이<br>가장 강하게 나나요?</h2>
+      <p class="lede-sm">해당하는 순간을 모두 골라주세요.</p>
+
+      <div class="option-grid" data-group="triggers" data-multi="true">
+        <button type="button" class="option-card" data-value="식사 후">
+          <span class="option-icon">🍚</span><span>식사 후</span>
+        </button>
+        <button type="button" class="option-card" data-value="출근·등교길">
+          <span class="option-icon">🚶</span><span>출근·등교길</span>
+        </button>
+        <button type="button" class="option-card" data-value="업무·야근 스트레스">
+          <span class="option-icon">💼</span><span>업무·야근 스트레스</span>
+        </button>
+        <button type="button" class="option-card" data-value="커피 마실 때">
+          <span class="option-icon">☕</span><span>커피 마실 때</span>
+        </button>
+        <button type="button" class="option-card" data-value="술자리·모임">
+          <span class="option-icon">🍻</span><span>술자리·모임</span>
+        </button>
+        <button type="button" class="option-card" data-value="잠들기 전">
+          <span class="option-icon">🌙</span><span>잠들기 전</span>
+        </button>
+      </div>
+
+      <div class="field">
+        <label for="dailyCount">금연 전, 하루 평균 흡연량</label>
+        <div class="input-suffix">
+          <input type="number" id="dailyCount" min="1" max="60" placeholder="예: 12" inputmode="numeric">
+          <span>개비</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3 : SNACKS -->
+    <section class="screen" data-screen="snacks">
+      <p class="step-eyebrow">금단완화 스낵 구성</p>
+      <h2 class="display-md">받고 싶은 스낵을<br>골라주세요</h2>
+      <p class="lede-sm">담배 맛을 떨어뜨리는 효과가 확인된 항목들이에요. 카테고리별로 자유롭게 선택하세요.</p>
+
+      <div class="snack-category">
+        <div class="snack-category-head">
+          <span class="cat-icon">🥛</span>
+          <div>
+            <h3>유제품</h3>
+            <p>흡연 직후 쓴맛·불쾌한 뒷맛을 강화해요</p>
+          </div>
+        </div>
+        <div class="option-grid tight" data-group="snack-dairy" data-multi="true">
+          <button type="button" class="option-card sm" data-value="우유">우유</button>
+          <button type="button" class="option-card sm" data-value="요구르트">요구르트</button>
+          <button type="button" class="option-card sm" data-value="치즈스틱">치즈스틱</button>
+        </div>
+      </div>
+
+      <div class="snack-category">
+        <div class="snack-category-head">
+          <span class="cat-icon">🥕</span>
+          <div>
+            <h3>아삭한 과일·채소</h3>
+            <p>씹는 동작으로 손-입 습관까지 대신해요</p>
+          </div>
+        </div>
+        <div class="option-grid tight" data-group="snack-crunch" data-multi="true">
+          <button type="button" class="option-card sm" data-value="당근스틱">당근스틱</button>
+          <button type="button" class="option-card sm" data-value="셀러리">셀러리</button>
+          <button type="button" class="option-card sm" data-value="오이">오이</button>
+          <button type="button" class="option-card sm" data-value="사과">사과</button>
+          <button type="button" class="option-card sm" data-value="방울토마토">방울토마토</button>
+        </div>
+      </div>
+
+      <div class="snack-category">
+        <div class="snack-category-head">
+          <span class="cat-icon">💧</span>
+          <div>
+            <h3>무카페인 음료</h3>
+            <p>담배 맛을 밋밋하게 만들어줘요</p>
+          </div>
+        </div>
+        <div class="option-grid tight" data-group="snack-drink" data-multi="true">
+          <button type="button" class="option-card sm" data-value="생수·탄산수">생수·탄산수</button>
+          <button type="button" class="option-card sm" data-value="무카페인 허브티">무카페인 허브티</button>
+          <button type="button" class="option-card sm" data-value="과일주스">과일주스</button>
+        </div>
+      </div>
+      <p class="field-note" id="snackWarn"></p>
+    </section>
+
+    <!-- SCREEN 4 : PLAN -->
+    <section class="screen" data-screen="plan">
+      <p class="step-eyebrow">배송 구성</p>
+      <h2 class="display-md">얼마나 자주,<br>얼마 동안 받을까요?</h2>
+
+      <div class="field">
+        <label>하루 배송(수령) 횟수</label>
+        <div class="chip-row" data-group="frequency">
+          <button type="button" class="chip" data-value="1">1회</button>
+          <button type="button" class="chip" data-value="2">2회</button>
+          <button type="button" class="chip" data-value="3">3회</button>
+          <button type="button" class="chip" data-value="4">4회</button>
+        </div>
+        <p class="field-note">선택한 트리거 시간대에 맞춰 나눠 구성해 드려요.</p>
+      </div>
+
+      <div class="field">
+        <label>체험 기간</label>
+        <div class="trial-grid" data-group="trial">
+          <button type="button" class="trial-card" data-value="7">
+            <span class="trial-num">7</span><span class="trial-unit">일</span>
+            <span class="trial-desc">가볍게 시작</span>
+          </button>
+          <button type="button" class="trial-card" data-value="14">
+            <span class="trial-num">14</span><span class="trial-unit">일</span>
+            <span class="trial-desc">고비를 넘기는 기간</span>
+          </button>
+          <button type="button" class="trial-card" data-value="21">
+            <span class="trial-num">21</span><span class="trial-unit">일</span>
+            <span class="trial-desc">습관을 새로 들이는 기간</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5 : SUMMARY -->
+    <section class="screen" data-screen="summary">
+      <p class="step-eyebrow">마지막 확인</p>
+      <h2 class="display-md">이렇게 준비할게요</h2>
+
+      <div class="summary-card" id="summaryCard"></div>
+
+      <button class="btn-primary" id="confirmBtn">금연 스낵 시작하기</button>
+    </section>
+
+    <!-- SCREEN 6 : DASHBOARD -->
+    <section class="screen" data-screen="dashboard">
+      <div class="dash-top">
+        <span class="dash-greeting" id="dashGreeting">오늘도 잘 버티고 있어요</span>
+        <button class="icon-reset" id="resetBtn" title="처음부터 다시 설정하기" aria-label="다시 설정하기">↺</button>
+      </div>
+
+      <div class="day-counter">
+        <svg viewBox="0 0 120 120" class="breath-mark small" aria-hidden="true">
+          <circle cx="60" cy="60" r="14" class="breath-core"/>
+          <circle cx="60" cy="60" r="30" class="breath-ring ring-a"/>
+          <circle cx="60" cy="60" r="46" class="breath-ring ring-b"/>
+        </svg>
+        <div class="day-count-text">
+          <span class="day-count-label">금연</span>
+          <span class="day-count-num" id="dayCountNum">1</span>
+          <span class="day-count-label">일째</span>
+        </div>
+      </div>
+
+      <div class="growth-track">
+        <div class="growth-stage" id="growthStage">
+          <span class="growth-icon" id="growthIcon">🌱</span>
+          <span class="growth-name" id="growthName">씨앗을 심었어요</span>
+        </div>
+        <div class="growth-bar">
+          <div class="growth-bar-fill" id="growthBarFill"></div>
+        </div>
+        <span class="growth-goal" id="growthGoal">7일 목표까지</span>
+      </div>
+
+      <div class="today-schedule">
+        <h3>오늘의 스낵 타이밍</h3>
+        <ul class="schedule-list" id="scheduleList"></ul>
+      </div>
+
+      <p class="encourage-line" id="encourageLine"></p>
+    </section>
+
+  </main>
+
+  <!-- NAV BAR (prev / next), shown only during onboarding steps -->
+  <nav class="nav-bar" id="navBar" hidden>
+    <button class="btn-ghost" id="backBtn">이전</button>
+    <button class="btn-primary small" id="nextBtn">다음</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
